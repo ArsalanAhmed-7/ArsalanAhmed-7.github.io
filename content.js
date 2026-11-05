@@ -20,9 +20,9 @@ window.SITE = {
   tagline: "Administrative & Operations Professional",
   location: "Thatta, Sindh",
   email: "arslankh7@gmail.com",
-  linkedin: "https://www.linkedin.com/in/arslan-khushk/",
+  linkedin: "https://www.linkedin.com/in/arsalan-khushk/",
   photo: "portrait.jpg",          // photo ki file ka naam (repository mein upload karo)
-  cv: "",                         // CV ki PDF ka naam, jaise "Arslan-CV.pdf" (khali = button nahi dikhega)
+  cv: "Arsalan-Ahmed-CV.pdf",      // CV ki PDF ka naam, jaise "Arslan-CV.pdf" (khali = button nahi dikhega)
   photoGrayscale: false,           // true = black & white, false = colour
 
   /* ---------- Page title / description (Google aur browser tab ke liye) ---------- */
@@ -51,6 +51,95 @@ window.SITE = {
       { tag: "Procurement",   title: "Purchasing & vendors",             text: "Coordinate suppliers and purchasing for stationery, books, uniforms, furniture, equipment, and other institutional needs." },
       { tag: "Finance",       title: "Accounting & fee records",         text: "Maintain fee records, daily transactions, income and expenses; support reporting, budgeting, expense monitoring, and fee recovery." },
       { tag: "Events",        title: "Events & stakeholder liaison",     text: "Plan and coordinate 10+ institutional events, and liaise with external authorities, associations, district administration, and unions." }
+    ]
+  },
+
+  /* ---------- Case studies (Problem -> What I did -> Result) ----------
+     Har item ek poora case study banata hai. Fields:
+       category : "Finance", "HR", "Procurement" jaisi category
+       context  : chhoti line, jaise "Wisdom English Academy · 2025"
+       title    : case study ka naam
+       summary  : 1 line mein kya banaya
+       tools    : [ "Excel Tables", "SUM / SUBTOTAL" ]  -> chhote tags
+       problem  : pehle masla kya tha (text)
+       action   : aapne kya kiya -> [ "point 1", "point 2" ] (list) ya ek text
+       result   : nateeja -> [ "point 1", "point 2" ] ya ek text
+       metrics  : optional bade numbers -> [ { number: "3", label: "linked sheets" } ]
+       image / images : screenshot(s), click par bada dikhta hai
+       link, linkLabel : sample file ka download button
+     Jab tak items khali hain, ye section site par nahi dikhta.
+     SIRF ASLI BAATEIN likho. Numbers tabhi likho jab sach mein pata hon.
+     PRIVACY: sirf dummy sample files/screenshots, asli naam/salary/amount nahi. */
+  caseStudies: {
+    title: "Case studies.",
+    description: "Selected projects from my work, each showing the problem, what I built or changed, and the result.",
+    items: [
+      {
+        category: "Finance",
+        context: "Wisdom English Academy",
+        title: "Automated Monthly Account Workbook",
+        summary: "An Excel workbook I built to replace the manual ledger, bringing the month's income, expenses, balances and cash into one place.",
+        tools: ["Microsoft Excel", "Excel Tables", "Structured references", "SUM / SUBTOTAL"],
+        problem: "Monthly accounts were kept in a manual ledger. Totals had to be worked out by hand, and income, expenses, liabilities and receivables sat in separate places, so there was no single view of where the month stood.",
+        action: [
+          "Built a three-sheet workbook: Income, Expenses and a Main summary.",
+          "Set up daily entry tables where each row totals automatically and each column sums by category or department.",
+          "Linked the Main sheet to both tables so it updates on its own, showing income by category, expenses by department, liabilities, receivables and stock.",
+          "Added a month-end calculation from opening balance through income and expenses to cash in hand, plus a cash denomination count to check physical cash."
+        ],
+        result: [
+          "The month-end summary is produced automatically instead of being totalled by hand from the ledger.",
+          "All of the month's financial information is in one workbook, ready to review with management."
+        ],
+        images: ["case-studies/case-monthly-account-main.jpg", "case-studies/case-monthly-account-income.jpg"],
+        link: "samples/Monthly_Account_Sample.xlsx",
+        linkLabel: "Download sample (Excel)",
+        note: "Sample file and screenshots use dummy figures."
+      },
+      {
+        category: "Finance & HR",
+        context: "Wisdom English Academy",
+        title: "Monthly Payroll System, 31 Staff",
+        summary: "A formula-driven payroll workbook that turns monthly attendance and leave records into each staff member's final salary.",
+        tools: ["Microsoft Excel", "Payroll formulas", "Attendance tracking"],
+        problem: "Payroll was prepared on a plain Excel sheet with no formulas. Working days, leave deductions and net salaries for every staff member were calculated by hand each month, which took time and left room for mistakes.",
+        action: [
+          "Built a formula-driven payroll sheet for 31 staff covering basic salary, leave with pay, leave without pay, working days, conveyance, increment, advances and deductions.",
+          "Kept a separate monthly attendance tracker, printed and signed by staff, which the payroll is prepared from.",
+          "Formulas calculate working days and adjust each salary for leave automatically, in line with institute policy.",
+          "Deducted the 10% monthly staff security deposit and any advances to reach the net amount payable. Salaries are paid by bank transfer, with signed salary slips kept on record."
+        ],
+        result: [
+          "Salaries are calculated automatically by the same rules for every employee, instead of by hand.",
+          "Every month there is a complete, signed record of attendance, leave and payment for each staff member."
+        ],
+        images: ["case-studies/case-salary-sheet.jpg"],
+        link: "samples/Salary_Sheet_Sample.xlsx",
+        linkLabel: "Download sample (Excel)",
+        note: "Sample file and screenshot use dummy names and figures."
+      },
+      {
+        category: "Academics & Admin",
+        context: "Wisdom English Academy",
+        title: "Exam Marksheet & Result System",
+        summary: "An Excel marksheet I built for final exams and assessments that calculates each student's total, percentage and class position automatically.",
+        tools: ["Microsoft Excel", "SUM", "RANK", "IF formulas"],
+        problem: "Exam marksheets were raw sheets with no formulas. Each student's total, percentage and class position had to be worked out by hand for every class, which was slow at result time and left room for mistakes.",
+        action: [
+          "Built one workbook with separate sheets for Pre-School, Classes 1–3 and Classes 4–8, each with its own subjects and maximum marks.",
+          "Included continuous-assessment components such as class and homework, presentation and attendance alongside written subjects.",
+          "Formulas calculate obtained marks, percentage and class position for every student as soon as marks are entered.",
+          "Kept maximum marks in a header row so percentages adjust automatically if a subject's total changes."
+        ],
+        result: [
+          "Totals, percentages and positions are produced automatically for each class instead of being worked out by hand.",
+          "The same marksheet is reused for every exam and assessment, so results are consistent across classes."
+        ],
+        images: ["case-studies/case-exam-marksheet.jpg"],
+        link: "samples/Exam_Marksheet_Sample.xlsx",
+        linkLabel: "Download sample (Excel)",
+        note: "Sample file and screenshot use dummy student names and marks."
+      }
     ]
   },
 
@@ -107,14 +196,24 @@ window.SITE = {
      Photos GitHub mein upload karo aur yahan unka naam likho.
      PRIVACY: bacchon ke chehre/naam, staff ki salary, phone numbers pehle blur ya hata do. */
   samples: {
-    title: "A look at my work.",
-    description: "Meetings, trackers, procurement records and events from day-to-day operations.",
+    title: "Design & content work.",
+    description: "Social media posts, print materials and videos I designed and produced for the academy in Canva. Personal details and children's faces are removed or blurred.",
     items: [
-      // Neeche wali lines ka // hata kar apna content daalo (har item ke end par comma):
-      // { title: "Monthly Staff Meeting", category: "HR", text: "Agenda, minutes and follow-up with 30+ staff.", images: ["hr-meeting-1.jpg", "hr-meeting-2.jpg"] },
-      // { title: "Furniture & Stationery Purchase", category: "Procurement", text: "Vendor comparison, quotations and purchase record.", image: "procurement-1.jpg", link: "quotation-comparison.xlsx", linkLabel: "Download sample (Excel)" },
-      // { title: "Fee Recovery Tracker", category: "Finance", text: "Excel tracker for monthly fee follow-up.", image: "fee-tracker.png" },
-      // { title: "Annual Day", category: "Events", text: "Planned and coordinated with district guests.", images: ["event-1.jpg", "event-2.jpg", "event-3.jpg"] }
+      { title: "Pre-Entry Test Notice", category: "Social media", text: "Announcement for the academy's official pages sharing the pre-entry test date for Classes I–X and the registration deadline.", image: "designs/notice-pre-entry-test.jpg" },
+      { title: "Winter Holidays Announcement", category: "Social media", text: "Facebook post announcing the winter break dates in a seasonal theme with the school's branding.", image: "designs/winter-holidays-notice.jpg" },
+      { title: "Ramadan Timings Notice", category: "Social media", text: "Ramadan Kareem post announcing the school's special timings for the month, with Arabic calligraphy and an Islamic-architecture theme.", image: "designs/ramadan-timings-notice.jpg" },
+      { title: "School Closure Notice", category: "Social media", text: "Holiday closure announcement in a clean pinned-note layout with one clear message.", image: "designs/closure-notice-chehlum.jpg" },
+      { title: "Final Exams Animated Post", category: "Video", text: "Short animated post for Facebook and Instagram announcing the final exam start date, with text that builds in step by step.", video: "designs/exams-animated-post.mp4", image: "designs/exams-animated-post-poster.jpg" },
+      { title: "Parent–Teacher Meeting Presentation", category: "Video", text: "Animated presentation for the pre-school Parent–Teacher Meeting, covering the agenda, grading components, feedback and how parents can support learning at home.", video: "designs/ptm-presentation-video.mp4", image: "designs/ptm-presentation-video-poster.jpg" },
+      { title: "Admission Campaign Poster (Pre-School)", category: "Marketing", text: "Admission poster for the pre-school intake, designed for print and social media, highlighting the 18-year milestone, admission offers and programme features. Children's faces blurred for privacy.", image: "designs/admission-open-preschool.jpg" },
+      { title: "Admission Banner 2025–26 (Print)", category: "Marketing", text: "Large-format admission banner, Montessori to Matric, highlighting the school's facilities and 20-year milestone in the academy's navy-and-gold branding. Student photos blurred for privacy.", image: "designs/admission-banner-print.jpg" },
+      { title: "Winter Wonderland Event Invitation", category: "Events", text: "Invitation for the pre-school Winter Wonderland event, inviting parents to a day of music, dance performances, food stalls and games.", image: "designs/invitation-winter-wonderland.jpg" },
+      { title: "Parent–Teacher Meeting Poster", category: "Events", text: "Facebook announcement for the pre-school Parent–Teacher Meeting with date, time and venue in a warm, easy-to-read layout.", image: "designs/ptm-poster-preschool.jpg" },
+      { title: "Recruitment Posts", category: "HR & Recruitment", text: "Hiring posts for the academy's official page, advertising teaching and accounts roles with clear requirements and one contact for applications.", images: ["designs/hiring-post-teachers.jpg", "designs/hiring-post-accountant-teacher.jpg"] },
+      { title: "Pre-School Report Cards", category: "Print design", text: "Kid-friendly report cards for Nursery and Kindergarten: a filled annual card and two blank templates with marks, grades, grading key and sign-off. Personal details removed.", images: ["designs/report-card-preschool-annual.jpg", "designs/report-card-nursery.jpg", "designs/report-card-kindergarten.jpg"] },
+      { title: "Student & Staff ID Cards", category: "Print design", text: "ID card system in the academy's branding: student card with a QR code linking to the school's contact number, and a two-sided staff card with role details and terms of use. Names replaced with placeholders.", images: ["designs/student-id-card.jpg", "designs/staff-id-card-front.jpg", "designs/staff-id-card-back.jpg"] },
+      { title: "Teacher Appreciation Certificate", category: "Print design", text: "Certificate of Appreciation for teachers, recognising punctuality and dedication, in a formal gold-and-navy style. Recipient name replaced with a placeholder.", image: "designs/certificate-teacher-appreciation.jpg" },
+      { title: "Summer Vacation Homework Cover", category: "Print design", text: "Printed cover for students' summer homework, kid-friendly and on-brand, with space for name, father's name, class and section.", image: "designs/summer-vacation-cover.jpg" }
     ]
   },
 
@@ -136,7 +235,7 @@ window.SITE = {
       "Canva & graphic design",
       "Social media & video editing"
     ],
-    education: "BBA, Shah Abdul Latif University · 2019–2022",   // CV se year check kar lena
+    education: "BBA, Shah Abdul Latif University · 2019–2023",
     languages: "English, Urdu, Sindhi, Siraiki",
     courses: [
       { title: "Diploma in Information Technology", detail: "Easytech Institute · 2024–25" },

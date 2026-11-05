@@ -6,12 +6,12 @@
   <meta name="theme-color" content="#0f1b2d">
   <title>Arsalan Ahmed — Administration &amp; Operations</title>
   <meta name="description" content="Arsalan Ahmed — administrative and operations professional with experience in school administration, HR, procurement, accounting and event coordination.">
-  <!-- LinkedIn / WhatsApp link preview. Site live hone ke baad USERNAME apne GitHub username se badal do (README dekho). -->
+  <!-- LinkedIn / WhatsApp link preview -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Arsalan Ahmed — Administration &amp; Operations">
   <meta property="og:description" content="Administrative and operations professional. Experience, work samples and contact details.">
-  <meta property="og:image" content="https://USERNAME.github.io/arslan-portfolio/portrait.jpg">
-  <meta property="og:url" content="https://USERNAME.github.io/arslan-portfolio/">
+  <meta property="og:image" content="https://arsalanahmed-7.github.io/portrait.jpg">
+  <meta property="og:url" content="https://arsalanahmed-7.github.io/">
   <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,8 +25,9 @@
       <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true" data-text="initials"></span><span data-text="name"></span></a>
       <nav aria-label="Main navigation">
         <a href="#work">What I do</a>
+        <a href="#case-studies" id="nav-cases" hidden>Case studies</a>
+        <a href="#samples" id="nav-samples" hidden>Design work</a>
         <a href="#experience">Experience</a>
-        <a href="#samples" id="nav-samples" hidden>Work samples</a>
         <a href="#skills">Skills &amp; training</a>
         <a href="#contact" class="nav-contact">Contact</a>
       </nav>
@@ -41,7 +42,8 @@
         <p class="intro" data-text="intro"></p>
         <div class="hero-actions">
           <a class="button" href="#contact">Get in touch</a>
-          <a class="button outline" href="#experience">View experience</a>
+          <a class="button outline" href="#case-studies" id="cases-btn" hidden>View case studies</a>
+          <a class="button outline" href="#experience" id="exp-btn">View experience</a>
           <a class="button outline" id="cv-btn" download hidden>Download CV</a>
         </div>
         <p class="hero-note"><span data-text="currentRole"></span> · <span data-text="location"></span></p>
@@ -59,17 +61,22 @@
       <div class="work-grid" id="work-grid"></div>
     </section>
 
-    <section id="experience" class="career">
-      <div class="wrap">
-        <div class="section-head"><h2 data-text="experience.title"></h2><p class="section-desc" data-text="experience.description"></p></div>
-        <div class="timeline" id="timeline"></div>
-      </div>
+    <section id="case-studies" class="wrap" hidden>
+      <div class="section-head"><h2 data-text="caseStudies.title"></h2><p class="section-desc" data-text="caseStudies.description"></p></div>
+      <div class="cases" id="cases"></div>
     </section>
 
     <section id="samples" class="wrap" hidden>
       <div class="section-head"><h2 data-text="samples.title"></h2><p class="section-desc" data-text="samples.description"></p></div>
       <div class="filters" id="sample-filters"></div>
       <div class="samples-grid" id="samples-grid"></div>
+    </section>
+
+    <section id="experience" class="career">
+      <div class="wrap">
+        <div class="section-head"><h2 data-text="experience.title"></h2><p class="section-desc" data-text="experience.description"></p></div>
+        <div class="timeline" id="timeline"></div>
+      </div>
     </section>
 
     <section id="skills" class="wrap">
@@ -147,6 +154,99 @@
         tl.appendChild(a);
       });
 
+      // Lightbox (work samples aur case studies dono ke liye)
+      var box = el("div", "lightbox"); box.hidden = true;
+      var bImg = document.createElement("img"); bImg.alt = "";
+      var bVid = document.createElement("video"); bVid.controls = true; bVid.playsInline = true; bVid.loop = true; bVid.hidden = true;
+      var bCap = el("p", "lb-cap");
+      var bClose = el("button", "lb-btn lb-close", "×"); bClose.type = "button"; bClose.setAttribute("aria-label", "Close");
+      var bPrev = el("button", "lb-btn lb-prev", "‹"); bPrev.type = "button"; bPrev.setAttribute("aria-label", "Previous");
+      var bNext = el("button", "lb-btn lb-next", "›"); bNext.type = "button"; bNext.setAttribute("aria-label", "Next");
+      box.appendChild(bImg); box.appendChild(bVid); box.appendChild(bCap); box.appendChild(bClose); box.appendChild(bPrev); box.appendChild(bNext);
+      document.body.appendChild(box);
+      var cur = { pics: [], i: 0, title: "" };
+      function show() {
+        var p = cur.pics[cur.i];
+        if (typeof p === "object" && p.video) {
+          bImg.hidden = true; bVid.hidden = false; bVid.poster = p.poster || ""; bVid.src = p.video; bVid.play().catch(function () {});
+        } else {
+          bVid.pause(); bVid.removeAttribute("src"); bVid.hidden = true; bImg.hidden = false; bImg.src = p; bImg.alt = cur.title;
+        }
+        bCap.textContent = cur.title + (cur.pics.length > 1 ? "  ·  " + (cur.i + 1) + " / " + cur.pics.length : "");
+        bPrev.hidden = bNext.hidden = cur.pics.length < 2;
+      }
+      function openBox(pics, title, i) { cur = { pics: pics, i: i, title: title }; show(); box.hidden = false; document.body.style.overflow = "hidden"; }
+      function closeBox() { bVid.pause(); box.hidden = true; document.body.style.overflow = ""; }
+      function step(d) { cur.i = (cur.i + d + cur.pics.length) % cur.pics.length; show(); }
+      bClose.addEventListener("click", closeBox);
+      bPrev.addEventListener("click", function () { step(-1); });
+      bNext.addEventListener("click", function () { step(1); });
+      box.addEventListener("click", function (e) { if (e.target === box) closeBox(); });
+      document.addEventListener("keydown", function (e) {
+        if (box.hidden) return;
+        if (e.key === "Escape") closeBox(); else if (e.key === "ArrowLeft" && cur.pics.length > 1) step(-1); else if (e.key === "ArrowRight" && cur.pics.length > 1) step(1);
+      });
+
+      function imgsOf(it) { return it.images && it.images.length ? it.images : (it.image ? [it.image] : []); }
+      function listOrText(v) {
+        if (Array.isArray(v)) { var ul = el("ul"); v.forEach(function (x) { ul.appendChild(el("li", null, x)); }); return ul; }
+        return el("p", null, v);
+      }
+
+      // Case studies: Problem -> What I did -> Result
+      var cs = (S.caseStudies && S.caseStudies.items) || [];
+      if (cs.length) {
+        document.getElementById("case-studies").hidden = false;
+        document.getElementById("nav-cases").hidden = false;
+        document.getElementById("cases-btn").hidden = false;
+        document.getElementById("exp-btn").hidden = true;
+        var wrapC = document.getElementById("cases");
+        cs.forEach(function (c, n) {
+          var art = el("article", "case");
+          var top = el("div", "case-top");
+          var head = el("div", "case-head");
+          var meta = el("p", "case-meta");
+          meta.appendChild(el("span", "case-num", "Case study " + String(n + 1).padStart(2, "0")));
+          if (c.category) meta.appendChild(el("span", null, c.category));
+          if (c.context) meta.appendChild(el("span", null, c.context));
+          head.appendChild(meta);
+          head.appendChild(el("h3", null, c.title));
+          if (c.summary) head.appendChild(el("p", "case-summary", c.summary));
+          if (c.tools && c.tools.length) {
+            var tg = el("ul", "case-tools"); c.tools.forEach(function (t) { tg.appendChild(el("li", null, t)); }); head.appendChild(tg);
+          }
+          var acts = el("div", "case-actions");
+          if (c.link) { var dl = el("a", "button", c.linkLabel || "Download sample"); dl.href = c.link; dl.setAttribute("download", ""); acts.appendChild(dl); }
+          if (acts.children.length) head.appendChild(acts);
+          if (c.note) head.appendChild(el("p", "case-note", c.note));
+          top.appendChild(head);
+          var pics = imgsOf(c);
+          if (pics.length) {
+            var fig = el("button", "case-shot"); fig.type = "button"; fig.setAttribute("aria-label", "View screenshots: " + c.title);
+            var im = document.createElement("img"); im.src = pics[0]; im.alt = c.title + " screenshot"; im.loading = "lazy"; fig.appendChild(im);
+            fig.appendChild(el("span", "count", pics.length > 1 ? pics.length + " screenshots · click to view" : "Click to enlarge"));
+            fig.addEventListener("click", function () { openBox(pics, c.title, 0); });
+            top.appendChild(fig);
+          }
+          art.appendChild(top);
+          var steps = el("div", "case-steps");
+          [["01", "The problem", c.problem], ["02", "What I did", c.action], ["03", "The result", c.result]].forEach(function (st) {
+            if (!st[2]) return;
+            var d = el("div", "case-step");
+            var h = el("h4"); h.appendChild(el("span", null, st[0])); h.appendChild(document.createTextNode(st[1])); d.appendChild(h);
+            d.appendChild(listOrText(st[2]));
+            steps.appendChild(d);
+          });
+          art.appendChild(steps);
+          if (c.metrics && c.metrics.length) {
+            var mt = el("div", "case-metrics");
+            c.metrics.forEach(function (m) { var d = el("div"); d.appendChild(el("strong", null, m.number)); d.appendChild(el("span", null, m.label)); mt.appendChild(d); });
+            art.appendChild(mt);
+          }
+          wrapC.appendChild(art);
+        });
+      }
+
       // Work samples: categories (filter), multiple photos per item, lightbox
       var items = (S.samples && S.samples.items) || [];
       if (items.length) {
@@ -156,17 +256,17 @@
         var filters = document.getElementById("sample-filters");
         var cards = [];
 
-        function imgsOf(it) { return it.images && it.images.length ? it.images : (it.image ? [it.image] : []); }
-
         items.forEach(function (it) {
           var card = el("article", "sample-card");
           card.dataset.cat = it.category || "";
           var pics = imgsOf(it);
           if (pics.length) {
-            var btn = el("button", "thumb"); btn.type = "button"; btn.setAttribute("aria-label", "View photos: " + it.title);
+            var btn = el("button", "thumb"); btn.type = "button"; btn.setAttribute("aria-label", (it.video ? "Play video: " : "View: ") + it.title);
             var im = document.createElement("img"); im.src = pics[0]; im.alt = it.title; im.loading = "lazy"; btn.appendChild(im);
-            if (pics.length > 1) btn.appendChild(el("span", "count", pics.length + " photos"));
-            btn.addEventListener("click", function () { openBox(pics, it.title, 0); });
+            if (it.video) { btn.appendChild(el("span", "play", "▶")); btn.appendChild(el("span", "count", "Video")); }
+            else if (pics.length > 1) btn.appendChild(el("span", "count", pics.length + " designs"));
+            var targets = it.video ? [{ video: it.video, poster: pics[0] }] : pics;
+            btn.addEventListener("click", function () { openBox(targets, it.title, 0); });
             card.appendChild(btn);
           }
           var body = el("div", "sample-body");
@@ -191,32 +291,6 @@
           });
         }
 
-        // Lightbox
-        var box = el("div", "lightbox"); box.hidden = true;
-        var bImg = document.createElement("img"); bImg.alt = "";
-        var bCap = el("p", "lb-cap");
-        var bClose = el("button", "lb-btn lb-close", "×"); bClose.type = "button"; bClose.setAttribute("aria-label", "Close");
-        var bPrev = el("button", "lb-btn lb-prev", "‹"); bPrev.type = "button"; bPrev.setAttribute("aria-label", "Previous");
-        var bNext = el("button", "lb-btn lb-next", "›"); bNext.type = "button"; bNext.setAttribute("aria-label", "Next");
-        box.appendChild(bImg); box.appendChild(bCap); box.appendChild(bClose); box.appendChild(bPrev); box.appendChild(bNext);
-        document.body.appendChild(box);
-        var cur = { pics: [], i: 0, title: "" };
-        function show() {
-          bImg.src = cur.pics[cur.i]; bImg.alt = cur.title;
-          bCap.textContent = cur.title + (cur.pics.length > 1 ? "  ·  " + (cur.i + 1) + " / " + cur.pics.length : "");
-          bPrev.hidden = bNext.hidden = cur.pics.length < 2;
-        }
-        function openBox(pics, title, i) { cur = { pics: pics, i: i, title: title }; show(); box.hidden = false; document.body.style.overflow = "hidden"; }
-        function closeBox() { box.hidden = true; document.body.style.overflow = ""; }
-        function step(d) { cur.i = (cur.i + d + cur.pics.length) % cur.pics.length; show(); }
-        bClose.addEventListener("click", closeBox);
-        bPrev.addEventListener("click", function () { step(-1); });
-        bNext.addEventListener("click", function () { step(1); });
-        box.addEventListener("click", function (e) { if (e.target === box) closeBox(); });
-        document.addEventListener("keydown", function (e) {
-          if (box.hidden) return;
-          if (e.key === "Escape") closeBox(); else if (e.key === "ArrowLeft" && cur.pics.length > 1) step(-1); else if (e.key === "ArrowRight" && cur.pics.length > 1) step(1);
-        });
       }
 
       // CV download (button tabhi dikhta hai jab cv: "..." bhara ho)

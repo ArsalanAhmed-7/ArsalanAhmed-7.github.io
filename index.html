@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f1b2d">
+  <title>Arsalan Ahmed — Administration &amp; Operations</title>
+  <meta name="description" content="Arsalan Ahmed — administrative and operations professional with experience in school administration, HR, procurement, accounting and event coordination.">
+  <!-- LinkedIn / WhatsApp link preview. Site live hone ke baad USERNAME apne GitHub username se badal do (README dekho). -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Arsalan Ahmed — Administration &amp; Operations">
+  <meta property="og:description" content="Administrative and operations professional. Experience, work samples and contact details.">
+  <meta property="og:image" content="https://USERNAME.github.io/arslan-portfolio/portrait.jpg">
+  <meta property="og:url" content="https://USERNAME.github.io/arslan-portfolio/">
+  <meta name="twitter:card" content="summary">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Is file ko edit karne ki zarurat nahi. Sara text content.js mein hai. -->
+  <header class="site-header" id="top">
+    <div class="wrap topbar">
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true" data-text="initials"></span><span data-text="name"></span></a>
+      <nav aria-label="Main navigation">
+        <a href="#work">What I do</a>
+        <a href="#experience">Experience</a>
+        <a href="#samples" id="nav-samples" hidden>Work samples</a>
+        <a href="#skills">Skills &amp; training</a>
+        <a href="#contact" class="nav-contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <div class="hero-text">
+        <h1 data-text="name"></h1>
+        <p class="role" data-text="tagline"></p>
+        <p class="intro" data-text="intro"></p>
+        <div class="hero-actions">
+          <a class="button" href="#contact">Get in touch</a>
+          <a class="button outline" href="#experience">View experience</a>
+          <a class="button outline" id="cv-btn" download hidden>Download CV</a>
+        </div>
+        <p class="hero-note"><span data-text="currentRole"></span> · <span data-text="location"></span></p>
+      </div>
+      <figure class="portrait-card"><img id="photo" alt=""></figure>
+    </section>
+
+    <div class="wrap numbers" id="highlights" aria-label="Career highlights"></div>
+
+    <section id="work" class="wrap">
+      <div class="section-head">
+        <h2 data-text="work.title"></h2>
+        <p class="section-desc" data-text="work.description"></p>
+      </div>
+      <div class="work-grid" id="work-grid"></div>
+    </section>
+
+    <section id="experience" class="career">
+      <div class="wrap">
+        <div class="section-head"><h2 data-text="experience.title"></h2><p class="section-desc" data-text="experience.description"></p></div>
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </section>
+
+    <section id="samples" class="wrap" hidden>
+      <div class="section-head"><h2 data-text="samples.title"></h2><p class="section-desc" data-text="samples.description"></p></div>
+      <div class="filters" id="sample-filters"></div>
+      <div class="samples-grid" id="samples-grid"></div>
+    </section>
+
+    <section id="skills" class="wrap">
+      <div class="section-head"><h2 data-text="skills.title"></h2><p class="section-desc" data-text="skills.description"></p></div>
+      <div class="bottom-grid">
+        <div class="info-panel">
+          <h3>Core skills</h3>
+          <ul class="skill-list" id="skill-list"></ul>
+          <p class="about-note"><strong>Education:</strong> <span data-text="skills.education"></span><br><strong>Languages:</strong> <span data-text="skills.languages"></span></p>
+        </div>
+        <div class="info-panel">
+          <h3>Courses &amp; recognition</h3>
+          <ul class="credential-list" id="courses"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="contact-box">
+        <div class="wrap contact-inner">
+          <div><h2 data-text="contact.title"></h2><p data-text="contact.text"></p></div>
+          <div class="contact-actions"><a class="button light" data-mailto data-text="email"></a><a class="button outline-light" id="linkedin" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap"><span>© <span id="year"></span> <span data-text="name"></span> · <span data-text="footerText"></span></span><a href="#top">Back to top</a></footer>
+
+  <noscript><p class="wrap" style="padding:24px 0">Please enable JavaScript to view this portfolio.</p></noscript>
+
+  <script src="content.js"></script>
+  <script>
+    (function () {
+      var S = window.SITE;
+      if (!S) { document.body.insertAdjacentHTML("afterbegin", "<p style='padding:24px'>content.js could not be loaded or has a typo (missing comma or quote).</p>"); return; }
+
+      function get(path) { return path.split(".").reduce(function (o, k) { return o == null ? o : o[k]; }, S); }
+      function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+      // Simple text fields
+      document.querySelectorAll("[data-text]").forEach(function (n) { var v = get(n.getAttribute("data-text")); if (v != null) n.textContent = v; });
+
+      // Page title / description / email links / linkedin / photo
+      document.title = S.pageTitle;
+      var md = document.querySelector('meta[name="description"]'); if (md) md.setAttribute("content", S.pageDescription);
+      document.querySelectorAll("[data-mailto]").forEach(function (a) { a.href = "mailto:" + S.email; });
+      document.getElementById("linkedin").href = S.linkedin;
+      var img = document.getElementById("photo");
+      img.src = S.photo; img.alt = "Portrait of " + S.name;
+      if (S.photoGrayscale === false) img.style.filter = "none";
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Highlights
+      var hl = document.getElementById("highlights");
+      S.highlights.forEach(function (h) { var d = el("div", "metric"); d.appendChild(el("strong", null, h.number)); d.appendChild(el("span", null, h.label)); hl.appendChild(d); });
+
+      // Work cards
+      var wg = document.getElementById("work-grid");
+      S.work.cards.forEach(function (c, i) {
+        var a = el("article", "work-card");
+        a.appendChild(el("span", "index", c.tag));
+        a.appendChild(el("h3", null, c.title));
+        a.appendChild(el("p", null, c.text));
+        wg.appendChild(a);
+      });
+
+      // Timeline
+      var tl = document.getElementById("timeline");
+      S.experience.jobs.forEach(function (j, i) {
+        tl.appendChild(el("div", "timeline-date", j.dates));
+        var a = el("article", "timeline-item" + (i === S.experience.jobs.length - 1 ? " last" : ""));
+        a.appendChild(el("h3", null, j.role));
+        a.appendChild(el("p", "org", j.org));
+        var ul = el("ul"); j.points.forEach(function (p) { ul.appendChild(el("li", null, p)); }); a.appendChild(ul);
+        tl.appendChild(a);
+      });
+
+      // Work samples: categories (filter), multiple photos per item, lightbox
+      var items = (S.samples && S.samples.items) || [];
+      if (items.length) {
+        document.getElementById("samples").hidden = false;
+        document.getElementById("nav-samples").hidden = false;
+        var sg = document.getElementById("samples-grid");
+        var filters = document.getElementById("sample-filters");
+        var cards = [];
+
+        function imgsOf(it) { return it.images && it.images.length ? it.images : (it.image ? [it.image] : []); }
+
+        items.forEach(function (it) {
+          var card = el("article", "sample-card");
+          card.dataset.cat = it.category || "";
+          var pics = imgsOf(it);
+          if (pics.length) {
+            var btn = el("button", "thumb"); btn.type = "button"; btn.setAttribute("aria-label", "View photos: " + it.title);
+            var im = document.createElement("img"); im.src = pics[0]; im.alt = it.title; im.loading = "lazy"; btn.appendChild(im);
+            if (pics.length > 1) btn.appendChild(el("span", "count", pics.length + " photos"));
+            btn.addEventListener("click", function () { openBox(pics, it.title, 0); });
+            card.appendChild(btn);
+          }
+          var body = el("div", "sample-body");
+          if (it.category) body.appendChild(el("span", "sample-cat", it.category));
+          body.appendChild(el("h3", null, it.title));
+          if (it.text) body.appendChild(el("p", null, it.text));
+          if (it.link) { var l = el("a", "sample-link", (it.linkLabel || "Open") + " →"); l.href = it.link; l.target = "_blank"; l.rel = "noopener"; body.appendChild(l); }
+          card.appendChild(body); sg.appendChild(card); cards.push(card);
+        });
+
+        var cats = [];
+        items.forEach(function (it) { if (it.category && cats.indexOf(it.category) < 0) cats.push(it.category); });
+        if (cats.length > 1) {
+          ["All"].concat(cats).forEach(function (c, i) {
+            var b = el("button", "chip" + (i === 0 ? " active" : ""), c); b.type = "button";
+            b.addEventListener("click", function () {
+              filters.querySelectorAll(".chip").forEach(function (x) { x.classList.remove("active"); });
+              b.classList.add("active");
+              cards.forEach(function (card) { card.hidden = !(c === "All" || card.dataset.cat === c); });
+            });
+            filters.appendChild(b);
+          });
+        }
+
+        // Lightbox
+        var box = el("div", "lightbox"); box.hidden = true;
+        var bImg = document.createElement("img"); bImg.alt = "";
+        var bCap = el("p", "lb-cap");
+        var bClose = el("button", "lb-btn lb-close", "×"); bClose.type = "button"; bClose.setAttribute("aria-label", "Close");
+        var bPrev = el("button", "lb-btn lb-prev", "‹"); bPrev.type = "button"; bPrev.setAttribute("aria-label", "Previous");
+        var bNext = el("button", "lb-btn lb-next", "›"); bNext.type = "button"; bNext.setAttribute("aria-label", "Next");
+        box.appendChild(bImg); box.appendChild(bCap); box.appendChild(bClose); box.appendChild(bPrev); box.appendChild(bNext);
+        document.body.appendChild(box);
+        var cur = { pics: [], i: 0, title: "" };
+        function show() {
+          bImg.src = cur.pics[cur.i]; bImg.alt = cur.title;
+          bCap.textContent = cur.title + (cur.pics.length > 1 ? "  ·  " + (cur.i + 1) + " / " + cur.pics.length : "");
+          bPrev.hidden = bNext.hidden = cur.pics.length < 2;
+        }
+        function openBox(pics, title, i) { cur = { pics: pics, i: i, title: title }; show(); box.hidden = false; document.body.style.overflow = "hidden"; }
+        function closeBox() { box.hidden = true; document.body.style.overflow = ""; }
+        function step(d) { cur.i = (cur.i + d + cur.pics.length) % cur.pics.length; show(); }
+        bClose.addEventListener("click", closeBox);
+        bPrev.addEventListener("click", function () { step(-1); });
+        bNext.addEventListener("click", function () { step(1); });
+        box.addEventListener("click", function (e) { if (e.target === box) closeBox(); });
+        document.addEventListener("keydown", function (e) {
+          if (box.hidden) return;
+          if (e.key === "Escape") closeBox(); else if (e.key === "ArrowLeft" && cur.pics.length > 1) step(-1); else if (e.key === "ArrowRight" && cur.pics.length > 1) step(1);
+        });
+      }
+
+      // CV download (button tabhi dikhta hai jab cv: "..." bhara ho)
+      if (S.cv) {
+        var cvBtn = document.getElementById("cv-btn"); cvBtn.href = S.cv; cvBtn.hidden = false;
+      }
+
+      // Skills + courses
+      var sl = document.getElementById("skill-list");
+      S.skills.list.forEach(function (s) { sl.appendChild(el("li", null, s)); });
+      var cl = document.getElementById("courses");
+      S.skills.courses.forEach(function (c) { var li = el("li"); li.appendChild(el("strong", null, c.title)); li.appendChild(el("span", null, c.detail)); cl.appendChild(li); });
+    })();
+  </script>
+</body>
+</html>

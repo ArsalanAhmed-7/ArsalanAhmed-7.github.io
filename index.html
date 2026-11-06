@@ -94,6 +94,15 @@
       </div>
     </section>
 
+    <section id="testimonial" class="wrap" hidden>
+      <div class="quote-box">
+        <p class="quote-kicker" data-text="testimonial.title"></p>
+        <blockquote id="t-quote"></blockquote>
+        <p class="quote-by"><strong data-text="testimonial.by"></strong> · <span data-text="testimonial.org"></span></p>
+        <div class="quote-actions"><button type="button" class="button outline" id="t-btn"></button><span class="quote-note" data-text="testimonial.note"></span></div>
+      </div>
+    </section>
+
     <section id="contact" class="contact">
       <div class="contact-box">
         <div class="wrap contact-inner">
@@ -292,6 +301,14 @@
           });
         }
 
+      }
+
+      // Recommendation
+      if (S.testimonial && S.testimonial.quote) {
+        document.getElementById("testimonial").hidden = false;
+        document.getElementById("t-quote").textContent = "\u201C" + S.testimonial.quote + "\u201D";
+        var tb = document.getElementById("t-btn"); tb.textContent = (S.testimonial.linkLabel || "View letter") + " \u2192";
+        tb.addEventListener("click", function () { openBox([S.testimonial.image], "Recommendation letter", 0); });
       }
 
       // CV download (button tabhi dikhta hai jab cv: "..." bhara ho)

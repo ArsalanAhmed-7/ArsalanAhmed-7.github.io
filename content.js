@@ -328,6 +328,17 @@ window.SITE = {
     ]
   },
 
+  /* ---------- Recommendation (letter se quote) ---------- */
+  testimonial: {
+    title: "In the words of my principal.",
+    quote: "Throughout his service, Mr. Arsalan has shown himself to be reliable, well-organised and honest, and has handled financial and confidential matters with care. He works well with staff, parents and management, and regularly takes the initiative to improve the academy's systems.",
+    by: "Principal",
+    org: "Wisdom English Academy, Makli Campus",
+    image: "case-studies/recommendation-letter.jpg",
+    linkLabel: "View recommendation letter",
+    note: "Signature and stamp blurred for the web version. Original letter available on request."
+  },
+
   /* ---------- Contact box (neeche) ---------- */
   contact: {
     title: "Need a reliable hand with administration and operations?",

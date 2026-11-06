@@ -217,6 +217,7 @@
           }
           var acts = el("div", "case-actions");
           if (c.link) { var dl = el("a", "button", c.linkLabel || "Download sample"); dl.href = c.link; dl.setAttribute("download", ""); acts.appendChild(dl); }
+          if (c.link2) { var dl2 = el("a", "button outline", c.link2Label || "Download sample"); dl2.href = c.link2; dl2.setAttribute("download", ""); acts.appendChild(dl2); }
           if (acts.children.length) head.appendChild(acts);
           if (c.note) head.appendChild(el("p", "case-note", c.note));
           top.appendChild(head);
@@ -224,7 +225,7 @@
           if (pics.length) {
             var fig = el("button", "case-shot"); fig.type = "button"; fig.setAttribute("aria-label", "View screenshots: " + c.title);
             var im = document.createElement("img"); im.src = pics[0]; im.alt = c.title + " screenshot"; im.loading = "lazy"; fig.appendChild(im);
-            fig.appendChild(el("span", "count", pics.length > 1 ? pics.length + " screenshots · click to view" : "Click to enlarge"));
+            fig.appendChild(el("span", "count", pics.length > 1 ? pics.length + " " + (c.mediaLabel || "screenshots") + " · click to view" : "Click to enlarge"));
             fig.addEventListener("click", function () { openBox(pics, c.title, 0); });
             top.appendChild(fig);
           }

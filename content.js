@@ -79,19 +79,20 @@ window.SITE = {
         context: "Wisdom English Academy",
         title: "Automated Monthly Account Workbook",
         summary: "An Excel workbook I built to replace the manual ledger, bringing the month's income, expenses, balances and cash into one place.",
-        tools: ["Microsoft Excel", "Excel Tables", "Structured references", "SUM / SUBTOTAL"],
+        tools: ["Microsoft Excel", "Excel Tables", "Structured references", "INDEX / MATCH", "Conditional formatting", "Charts"],
         problem: "Monthly accounts were kept in a manual ledger. Totals had to be worked out by hand, and income, expenses, liabilities and receivables sat in separate places, so there was no single view of where the month stood.",
         action: [
           "Built a three-sheet workbook: Income, Expenses and a Main summary.",
           "Set up daily entry tables where each row totals automatically and each column sums by category or department.",
           "Linked the Main sheet to both tables so it updates on its own, showing income by category, expenses by department, liabilities, receivables and stock.",
-          "Added a month-end calculation from opening balance through income and expenses to cash in hand, plus a cash denomination count to check physical cash."
+          "Added a month-end calculation from opening balance through income and expenses to cash in hand, plus a cash denomination count to check physical cash.",
+          "Built a Dashboard sheet with KPI cards, income share by category, budget vs actual by department with automatic Over / Near limit / Within budget status, the top 5 expenses, and income, expense and daily-income charts."
         ],
         result: [
           "The month-end summary is produced automatically instead of being totalled by hand from the ledger.",
-          "All of the month's financial information is in one workbook, ready to review with management."
+          "All of the month's financial information is in one workbook, and the dashboard shows management the position and any over-budget departments at a glance."
         ],
-        images: ["case-studies/case-monthly-account-main.jpg", "case-studies/case-monthly-account-income.jpg"],
+        images: ["case-studies/case-monthly-account-dashboard.jpg", "case-studies/case-monthly-account-main.jpg", "case-studies/case-monthly-account-income.jpg"],
         link: "samples/Monthly_Account_Sample.xlsx",
         linkLabel: "Download sample (Excel)",
         note: "Sample file and screenshots use dummy figures."
@@ -139,6 +140,88 @@ window.SITE = {
         link: "samples/Exam_Marksheet_Sample.xlsx",
         linkLabel: "Download sample (Excel)",
         note: "Sample file and screenshot use dummy student names and marks."
+      },
+      {
+        category: "HR & People",
+        context: "Wisdom English Academy",
+        title: "HR Documentation & Employee Lifecycle",
+        summary: "An HR documentation system I designed and built, covering every stage of employment from application and contract to attendance, leave, discipline and exit.",
+        tools: ["Microsoft Word", "HR policy", "Documentation", "Record keeping"],
+        problem: "HR paperwork had no fixed structure. Hiring, contracts, attendance, leave and disciplinary matters were not handled in a standard format, so there was no consistent written record for each staff member.",
+        action: [
+          "Created a standard Employment Application Form covering personal details, education, training, languages, work history and references.",
+          "Drafted the Employee Job Contract setting out the term, salary date, 10% security deposit, notice period, leave entitlement, late-arrival rules and duties.",
+          "Set up a monthly Staff Attendance Register, organised by section, for 30+ staff.",
+          "Introduced Leave Application and Short Leave Approval forms with incharge recommendation, leave balance and approval steps.",
+          "Issued formal circulars and warning and termination letters with reference numbers, following a documented disciplinary process."
+        ],
+        result: ["Every stage of employment now follows one structured process with its own standard document.", "Each staff member's hiring, attendance, leave and disciplinary history is kept on written record."],
+        images: ["hr/hr_employment_form_1.jpg","hr/hr_employment_form_2.jpg","hr/hr_contract_1.jpg","hr/hr_contract_2.jpg","hr/hr_attendance_1.jpg","hr/hr_leave_application.jpg","hr/hr_short_leave.jpg","hr/hr_circular.jpg","hr/hr_termination.jpg"],
+        note: "Names, dates and reference numbers replaced with placeholders."
+      },
+      {
+        category: "Procurement",
+        context: "Wisdom English Academy",
+        title: "Procurement & Vendor Management",
+        summary: "A documented purchasing process for stationery and books, from section requisitions and vendor comparison to the annual book order and publisher account checks.",
+        tools: ["Microsoft Excel", "Requisition forms", "Vendor comparison", "Reconciliation"],
+        problem: "Purchasing for a school of 500+ students and 30+ staff means many separate requests from different sections, more than one supplier for each item, and a large annual book order, all of which need to be controlled and recorded.",
+        action: [
+          "Introduced a Stationery / Goods Requisition form so each teacher or section requests items in writing.",
+          "Consolidate requisitions from Pre-Primary, Primary, Secondary and the office into one purchase list.",
+          "Collect rates from two vendors and compare them item by item to choose the better quote, then take it to the owner for approval.",
+          "Prepare the class-wise book list each session and build the order from student-wise demand, adding 10% extra sets for new admissions.",
+          "Keep a record of book invoices and payments and check it against the publisher's account statement."
+        ],
+        result: [
+          "Every purchase follows one route, from written request to comparison, approval and record.",
+          "Book orders are planned student by student with a 10% buffer for new admissions, and supplier balances can be checked against the school's own records."
+        ],
+        images: ["case-studies/case-procurement-comparison.jpg", "case-studies/case-requisition-form.jpg", "case-studies/case-book-list.jpg", "case-studies/case-book-order.jpg"],
+        link: "samples/Procurement_Comparison_Sample.xlsx",
+        linkLabel: "Download comparison sample (Excel)",
+        link2: "samples/Book_Order_Sample.xlsx",
+        link2Label: "Download book order sample (Excel)",
+        note: "Samples use dummy vendors, prices and quantities. Original invoices and statements are not shown."
+      },
+      {
+        category: "Events",
+        context: "Wisdom English Academy",
+        title: "Event Management & Promotion",
+        summary: "End-to-end planning, coordination and promotion of school events, from the first plan to edited videos on the academy's social media.",
+        tools: ["Event planning", "Duty scheduling", "Canva", "CapCut", "Social media"],
+        problem: "School events need many moving parts to come together on one day: a plan, decoration, staff duties, parent communication and, afterwards, coverage that shows the school's work to families and the wider community.",
+        action: [
+          "Organise each event with management, then prepare the full plan: programme, requirements and arrangements.",
+          "Schedule staff duties so every area of the event has a clear owner on the day.",
+          "Coordinate the event on the day, from decoration and stage set-up to activity and food stalls.",
+          "Design the invitations and posters beforehand, then edit photos and videos and publish them on the academy's Facebook and Instagram pages.",
+          "Events include Sindhi Culture Day, Winter Fest 2026, Parent–Teacher Meetings and the Picnic 2K25 trip to Karachi."
+        ],
+        result: [
+          "Each event runs from one plan with assigned duties, and is followed by professionally edited coverage on social media.",
+          "Ran the online prefect election campaign, which drew 1,800+ comments from the school community."
+        ],
+        metrics: [{ number: "10+", label: "institutional events planned and coordinated" }, { number: "1,800+", label: "comments on the online prefect election campaign" }],
+        mediaLabel: "photos & videos",
+        images: [
+          "events/sindhi-culture-day-stage.jpg",
+          { video: "events/sindhi-culture-day-highlights.mp4", poster: "events/sindhi-culture-day-highlights-poster.jpg" },
+          "events/sindhi-culture-day-backdrop.jpg",
+          "events/sindhi-culture-day-entrance.jpg",
+          "events/sindhi-culture-day-stalls.jpg",
+          "events/sindhi-culture-day-students.jpg",
+          "designs/invitation-winter-wonderland.jpg",
+          "events/winter-fest-welcome-board.jpg",
+          "events/winter-fest-stage.jpg",
+          "events/winter-fest-performance.jpg",
+          "events/winter-fest-activity-stall.jpg",
+          "events/winter-fest-display-board.jpg",
+          { video: "events/picnic-2025-highlights.mp4", poster: "events/picnic-2025-highlights-poster.jpg" },
+          "events/ptm-entrance.jpg",
+          "events/ptm-parent-teacher-desk.jpg",
+          { video: "designs/ptm-presentation-video.mp4", poster: "designs/ptm-presentation-video-poster.jpg" }
+        ]
       }
     ]
   },
